@@ -4,7 +4,7 @@ const cors = require("cors");
 const app = express();
 const port = 8000;
 
-// Detik koneksi Database 
+// Detail koneksi Database 
 const db_config = {
   host: "localhost",
   user: "root",
@@ -160,17 +160,17 @@ function countFourDigitIdWilayah(data) {
       countById[prefix] = (countById[prefix] || 0) + 1;
     }
   });
-
+  
   return countById;
 }
 
-// API route to fetch data and count the occurrences
+// // API route to fetch data and count the occurrences
 app.get("/api/count-id-wilayah", async (req, res) => {
   try {
     // Fetch data from MySQL
     const data = await fetchDataFromMySQL();
+
     const result = countFourDigitIdWilayah(data);
-  
     res.json(result);
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -178,7 +178,9 @@ app.get("/api/count-id-wilayah", async (req, res) => {
   }
 });
 
-async function fetchDataFromMySQL() {
+
+
+async function fetchDataCovid19FromMySQL() {
   const connection = await mysql.createConnection(db_config);
   const [rows] = await connection.query("SELECT id_wilayah FROM covid19");
   connection.end();
@@ -211,7 +213,7 @@ function countTingkat2Percentage(data) {
 
 app.get("/api/count-achievement-percentage", async (req, res) => {
   try {
-    const data = await fetchDataFromMySQL();
+    const data = await fetchDataCovid19FromMySQL();
 
     const result = countTingkat2Percentage(data);
     const roundRes = roundJSONToTwoDecimalPlaces(result);
