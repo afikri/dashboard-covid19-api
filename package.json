@@ -1,0 +1,17 @@
+{
+  "name": "covid19-dashboard-backend",
+  "version": "1.0.0",
+  "description": "Backend server for COVID-19 dashboard. It supposed to have 100,000,000 records and provides data for visualization on a React.js frontend dashboard.",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "afikri",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mysql2": "^3.5.2"
+  }
+}
